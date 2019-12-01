@@ -91,7 +91,7 @@ public class Game {
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public boolean isCompleted() {
+	public boolean getCompleted() {
 		return completed;
 	}
 	public void setCompleted(boolean completed) {

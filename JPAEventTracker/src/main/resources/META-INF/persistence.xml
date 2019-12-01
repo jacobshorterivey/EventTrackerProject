@@ -9,7 +9,7 @@
     </provider>
 
 	<!--class definitions-->
-	<class>com.skilldistillery.eventtracker.entities.FIXME</class>
+	<class>com.skilldistillery.eventtracker.entities.Game</class>
 
 	
     <properties>
