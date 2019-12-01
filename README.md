@@ -11,7 +11,7 @@ This project required the knowledge and usage of technologies like, including Sp
 ### About My Project
 I chose to create a tracker that tracks video games a user has played, along with whether they've completed the game they entered, and how many hours it took them to finish the game. Users must enter a name for the game, and can optionally enter information like the game's developer, release date and genre. A table representing the "game" entity I used is below.
 
-!["game" entity table](images/table.png){:height="251px" width="163px"}
+<img src="images/table.png" alt="game entity table" width="163px" height="251px">
 
 ### Accessing and Using This Project
 Currently, this project is hosted on AWS and can be accessed at "URL HERE". The operations that can be performed with this project and the URIs to access these operations are listed below.
