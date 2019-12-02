@@ -14,7 +14,7 @@ I chose to create a tracker that tracks video games a user has played, along wit
 <img src="images/table.png" alt="game entity table" width="163px" height="251px">
 
 ### Accessing and Using This Project
-Currently, this project is hosted on AWS and can be accessed at "URL HERE". The operations that can be performed with this project and the URIs to access these operations are listed below.
+Currently, this project is hosted on AWS and can be accessed at **http://3.16.88.147:8080/EventTracker/api/games**. The operations that can be performed with this project and the URIs to access these operations are listed below.
 
 | CRUD Op. | HTTP Verb | URI               | Action                                     |
 |----------|-----------|-------------------|--------------------------------------------|
