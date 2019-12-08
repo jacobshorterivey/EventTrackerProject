@@ -186,20 +186,41 @@ function displayAllEvents(eventList) {
 			  genreInput.placeholder = 'Genre';
 			  newForm.appendChild(genreInput);
 
+			  //Submit button for edits
 			  let submitButton = document.createElement('input');
 			  submitButton.name = 'submit';
 			  submitButton.type = 'submit';
-			  submitButton.value = 'Submit';
+			  submitButton.value = 'Edit Game';
 			  submitButton.addEventListener('click', function(e) {
 			    e.preventDefault();
 			    let thisButtonForm = e.target.parentElement;
 			    console.log(thisButtonForm.name.value);
 			    console.log(thisButtonForm.developer.value);
 			    console.log(thisButtonForm.platform.value);
+			    
+			    
+			    let eventId = eventList[i].id;
+			    updateEvent(eventId);
+			    
 			    thisButtonForm.reset();
 			  })
 			  
+			  //Delete button
+			  let deleteButton = document.createElement('input');
+			  deleteButton.name = 'submit';
+			  deleteButton.type = 'submit';
+			  deleteButton.value = 'DELETE';
+			  deleteButton.addEventListener('click', function(e) {
+				  e.preventDefault();
+				  let thisButtonForm = e.target.parentElement;
+				  
+				  let eventId = eventList[i].id;
+				  deleteEvent(eventId);
+				  
+			  })
+			  
 			  newForm.appendChild(submitButton);
+			  newForm.appendChild(deleteButton);
 			  document.body.appendChild(newForm);
 			  
 		})
@@ -308,4 +329,60 @@ function displayEvent(event) {
 	miscUl.appendChild(genreLi);
 	genreLi.textContent = 'Genre: ' + event.genre;
 
+}
+
+function updateEvent(eventId) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('PUT', 'http://localhost:8090/api/games/' + eventId , true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var eventObject = JSON.parse(xhr.responseText);
+			displayEvent(eventObject);
+//			clearEventDataDiv();
+//			getAllEvents();
+		}
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			var dataDiv = document.getElementById('eventData');
+			dataDiv.textContent = 'Error Adding Event';
+		}
+	};
+	let form = document.newForm;
+	var newEventObject = {
+		name : form.name.value,
+		description : form.description.value,
+		developer : form.developer.value,
+		platform : form.platform.value,
+		releaseDate : form.releaseDate.value,
+		completed : form.completed.value,
+		hoursToComplete : form.hoursToComplete.value,
+		imgUrl : form.imgUrl.value,
+		genre : form.genre.value,
+	};
+
+	var newEventJsonString = JSON.stringify(newEventObject); // Convert JS object to JSON string
+	xhr.send(newEventJsonString);
+}
+
+function deleteEvent(eventId) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('DELETE', 'http://localhost:8090/api/games/' + eventId , true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+//			clearEventDataDiv();
+			let newForm = document.querySelector('[name="newForm"]');
+			newForm.parentElement.removeChild(newForm);
+			
+			getAllEvents();
+		}
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			var dataDiv = document.getElementById('eventData');
+			dataDiv.textContent = 'Error Adding Event';
+		}
+	};
+
+	xhr.send(null);
 }
