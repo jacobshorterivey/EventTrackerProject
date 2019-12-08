@@ -127,6 +127,81 @@ function displayAllEvents(eventList) {
 		//event listener
 		tableRow.addEventListener('click', function(e) {
 			  getEvent(eventList[i].id);
+			  
+			  //Edit Event Form
+			  let newForm = document.createElement('form');
+			  newForm.name = 'newForm';
+
+			  let nameInput = document.createElement('input');
+			  nameInput.name = 'name';
+			  nameInput.type = 'text';
+			  nameInput.placeholder = 'Name of Game';
+			  newForm.appendChild(nameInput);
+
+			  let descriptionInput = document.createElement('input');
+			  descriptionInput.name = 'description';
+			  descriptionInput.type = 'text';
+			  descriptionInput.placeholder = 'Description';
+			  newForm.appendChild(descriptionInput);
+
+			  let developerInput = document.createElement('input');
+			  developerInput.name = 'developer';
+			  developerInput.type = 'text';
+			  developerInput.placeholder = 'Developer';
+			  newForm.appendChild(developerInput);
+
+			  let platformInput = document.createElement('input');
+			  platformInput.name = 'platform';
+			  platformInput.type = 'text';
+			  platformInput.placeholder = 'Platform';
+			  newForm.appendChild(platformInput);
+
+			  let releaseDateInput = document.createElement('input');
+			  releaseDateInput.name = 'releaseDate';
+			  releaseDateInput.type = 'text';
+			  releaseDateInput.placeholder = 'Release Date';
+			  newForm.appendChild(releaseDateInput);
+
+			  let completedInput = document.createElement('input');
+			  completedInput.name = 'completed';
+			  completedInput.type = 'text';
+			  completedInput.placeholder = 'Completed';
+			  newForm.appendChild(completedInput);
+
+			  let hoursToCompleteInput = document.createElement('input');
+			  hoursToCompleteInput.name = 'hoursToComplete';
+			  hoursToCompleteInput.type = 'text';
+			  hoursToCompleteInput.placeholder = 'Hours To Complete';
+			  newForm.appendChild(hoursToCompleteInput);
+
+			  let imgUrlInput = document.createElement('input');
+			  imgUrlInput.name = 'imgUrl';
+			  imgUrlInput.type = 'text';
+			  imgUrlInput.placeholder = 'IMG URL';
+			  newForm.appendChild(imgUrlInput);
+
+			  let genreInput = document.createElement('input');
+			  genreInput.name = 'genre';
+			  genreInput.type = 'text';
+			  genreInput.placeholder = 'Genre';
+			  newForm.appendChild(genreInput);
+
+			  let submitButton = document.createElement('input');
+			  submitButton.name = 'submit';
+			  submitButton.type = 'submit';
+			  submitButton.value = 'Submit';
+			  submitButton.addEventListener('click', function(e) {
+			    e.preventDefault();
+			    let thisButtonForm = e.target.parentElement;
+			    console.log(thisButtonForm.name.value);
+			    console.log(thisButtonForm.developer.value);
+			    console.log(thisButtonForm.platform.value);
+			    thisButtonForm.reset();
+			  })
+			  
+			  newForm.appendChild(submitButton);
+			  document.body.appendChild(newForm);
+			  
 		})
 
 		let tableData1 = document.createElement('td');
