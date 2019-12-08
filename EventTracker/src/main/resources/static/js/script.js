@@ -19,7 +19,7 @@ function init() {
 }
 
 function clearEventDataDiv() {
-//traverse adn select eventData div and clear it out
+//traverse and select eventData div and clear it out
 	let eventDataDiv = document.getElementById('eventData');
 	while (eventDataDiv.firstElementChild) {
 		eventDataDiv.removeChild(eventDataDiv.firstElementChild);
@@ -81,8 +81,6 @@ function getAllEvents() {
 
 function displayAllEvents(eventList) {
 	var dataDiv = document.getElementById('eventData');
-	// TODO:
-	// * Create and append elements to the data div to display:
 	dataDiv.textContent = '';
 	while (dataDiv.firstElementChild) {
 		dataDiv.removeChild(dataDiv.firstElementChild);
@@ -125,6 +123,11 @@ function displayAllEvents(eventList) {
 		// table data
 		let tableRow = document.createElement('tr');
 		table.appendChild(tableRow);
+		
+		//event listener
+		tableRow.addEventListener('click', function(e) {
+			  getEvent(eventList[i].id);
+		})
 
 		let tableData1 = document.createElement('td');
 		// let tableData2 = document.createElement('td');
@@ -158,66 +161,10 @@ function displayAllEvents(eventList) {
 	dataDiv.appendChild(table);
 	document.body.appendChild(dataDiv);
 
-	// for(let i = 0; i < eventList.length; i++){
-	// let eventH2 = document.createElement('h2');
-	// dataDiv.appendChild(eventH2);
-	// eventH2.textContent = eventList[i].name;
-	//		
-	// let descriptionBq = document.createElement('blockquote');
-	// dataDiv.appendChild(descriptionBq);
-	// descriptionBq.textContent = eventList[i].description;
-	//		
-	// let miscUl = document.createElement('ul');
-	// dataDiv.appendChild(miscUl);
-	//		
-	// let developerLi = document.createElement('li');
-	// miscUl.appendChild(developerLi);
-	// developerLi.textContent = 'Developer: ' + eventList[i].developer;
-	//		
-	// let platformLi = document.createElement('li');
-	// miscUl.appendChild(platformLi);
-	// platformLi.textContent = 'Platform: ' + eventList[i].platform;
-	//		
-	// let releaseDateLi = document.createElement('li');
-	// miscUl.appendChild(releaseDateLi);
-	// releaseDateLi.textContent = 'Release Date: ' + eventList[i].releaseDate;
-	//		
-	// let completedLi = document.createElement('li');
-	// miscUl.appendChild(completedLi);
-	// if(eventList[i].completed){
-	// completedLi.textContent = 'Completed: Yes';
-	// }
-	// else{
-	// completedLi.textContent = 'Completed: No';
-	//
-	// }
-	//		
-	// let hoursToCompleteLi = document.createElement('li');
-	// miscUl.appendChild(hoursToCompleteLi);
-	// hoursToCompleteLi.textContent = 'Hours To Complete: ' +
-	// eventList[i].hoursToComplete;
-	//		
-	// let imgUrlLi = document.createElement('li');
-	// miscUl.appendChild(imgUrlLi);
-	// imgUrlLi.textContent = 'IMG URL: ' + eventList[i].imgUrl;
-	//		
-	// let genreLi = document.createElement('li');
-	// miscUl.appendChild(genreLi);
-	// genreLi.textContent = 'Genre: ' + eventList[i].genre;
-	//		
-	// }
-
 	console.log(eventList);
 }
 
 function getEvent(eventId) {
-	// TODO:
-	// * Use XMLHttpRequest to perform a GET request to "api/films/"
-	// with the filmId appended.
-	// * On success, if a response was received parse the film data
-	// and pass the film object to displayFilm().
-	// * On failure, or if no response text was received, put "Film not found"
-	// in the filmData div.
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'http://localhost:8090/api/games/' + eventId, true);
 	xhr.onreadystatechange = function() {
@@ -236,10 +183,6 @@ function getEvent(eventId) {
 
 function displayEvent(event) {
 	var dataDiv = document.getElementById('eventData');
-	// TODO:
-	// * Create and append elements to the data div to display:
-	// * Film title (h1) and description (blockquote).
-	// * Rating, release year, and length as an unordered list.
 	dataDiv.textContent = '';
 	while (dataDiv.firstElementChild) {
 		dataDiv.removeChild(dataDiv.firstElementChild);
