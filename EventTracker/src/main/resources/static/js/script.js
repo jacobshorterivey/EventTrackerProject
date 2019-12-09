@@ -80,6 +80,7 @@ function getAllEvents() {
 }
 
 function displayAllEvents(eventList) {
+	var totalHoursPlayed = 0;
 	var dataDiv = document.getElementById('eventData');
 	dataDiv.textContent = '';
 	while (dataDiv.firstElementChild) {
@@ -252,8 +253,16 @@ function displayAllEvents(eventList) {
 		tableRow.appendChild(tableData7);
 		tableRow.appendChild(tableData8);
 		tableRow.appendChild(tableData9);
+		
+		if(eventList[i].completed === true){
+			totalHoursPlayed += eventList[i].hoursToComplete;
+		}
 	}
 
+	var totalHoursPara = document.createElement('p');
+	totalHoursPara.textContent = 'Hours Spent on Completed Games: ' + totalHoursPlayed.toFixed(2);
+	
+	dataDiv.appendChild(totalHoursPara);
 	dataDiv.appendChild(table);
 	document.body.appendChild(dataDiv);
 
