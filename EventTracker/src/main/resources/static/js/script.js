@@ -28,7 +28,7 @@ function clearEventDataDiv() {
 
 function addNewEvent() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:8090/api/games/', true);
+	xhr.open('POST', 'api/games/', true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
@@ -64,7 +64,7 @@ function addNewEvent() {
 function getAllEvents() {
 	// TODO
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:8090/api/games/', true);
+	xhr.open('GET', 'api/games/', true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			var eventListObject = JSON.parse(xhr.responseText);
@@ -271,7 +271,7 @@ function displayAllEvents(eventList) {
 
 function getEvent(eventId) {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:8090/api/games/' + eventId, true);
+	xhr.open('GET', 'api/games/' + eventId, true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			var eventObject = JSON.parse(xhr.responseText);
@@ -342,7 +342,7 @@ function displayEvent(event) {
 
 function updateEvent(eventId) {
 	var xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'http://localhost:8090/api/games/' + eventId , true);
+	xhr.open('PUT', 'api/games/' + eventId , true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
@@ -376,7 +376,7 @@ function updateEvent(eventId) {
 
 function deleteEvent(eventId) {
 	var xhr = new XMLHttpRequest();
-	xhr.open('DELETE', 'http://localhost:8090/api/games/' + eventId , true);
+	xhr.open('DELETE', 'api/games/' + eventId , true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
