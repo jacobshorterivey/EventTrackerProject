@@ -16,6 +16,7 @@ export class GameComponent implements OnInit {
   games: Game[] = [];
   urlId: number;
   addingGame = false;
+  showShortList = false;
 
   // CONSTRUCTOR
   constructor(private gameSvc: GameService, private router: Router, private currentRoute: ActivatedRoute) { }
