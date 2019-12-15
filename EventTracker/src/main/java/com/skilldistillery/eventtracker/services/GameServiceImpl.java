@@ -54,6 +54,7 @@ public class GameServiceImpl implements GameService{
 			dbGame.setDeveloper(userGame.getDeveloper());
 			dbGame.setPlatform(userGame.getPlatform());
 			dbGame.setCompleted(userGame.getCompleted());
+			dbGame.setReleaseDate(userGame.getReleaseDate());
 			dbGame.setHoursToComplete(userGame.getHoursToComplete());
 			dbGame.setImgUrl(userGame.getImgUrl());
 			dbGame.setGenre(userGame.getGenre());

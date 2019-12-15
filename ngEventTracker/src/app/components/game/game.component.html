@@ -1,0 +1,116 @@
+<div *ngIf="!selected">
+  <table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <!-- <th>Description</th> -->
+        <th>Developer</th>
+        <th>Platform</th>
+        <th>Release Date</th>
+        <th>Completed</th>
+        <th></th>
+        <th>Hours To Complete</th>
+        <th>Image URL</th>
+        <th>Genre</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let game of games">
+      <td (click)="displayGame(game)">{{ game.id }}</td>
+      <td (click)="displayGame(game)">{{ game.name }}</td>
+      <!-- <td (click)="displayGame(game)">{{ game.description }}</td> -->
+      <td (click)="displayGame(game)">{{ game.developer }}</td>
+      <td (click)="displayGame(game)">{{ game.platform }}</td>
+      <td (click)="displayGame(game)">{{ game.releaseDate | date}}</td>
+      <td *ngIf="game.completed">Yes</td>
+      <td *ngIf="!game.completed">No</td>
+      <td><input type="checkbox" name="completed"
+        [(ngModel)]="game.completed" (change)="updateGame(game)"></td>
+      <!-- <td (click)="displayGame(game)">{{ game.completed }}</td> -->
+      <td *ngIf="game.completed" (click)="displayGame(game)">{{ game.hoursToComplete }}</td>
+      <td *ngIf="!game.completed" (click)="displayGame(game)">N/A</td>
+      <td (click)="displayGame(game)"><img [src]="game.imgUrl" style="width:150px;height:225px;"/></td>
+      <td (click)="displayGame(game)">{{ game.genre }}</td>
+      <td (click)="deleteTodo(game.id)">
+      <button class="btn btn-danger">X</button></td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+<div *ngIf="!selected"> <!--add a game-->
+  <button *ngIf="!addingGame" class="btn btn-primary" (click)="addingGame = true">Add A Game</button>
+  <div *ngIf="addingGame">
+  <form>
+    <input type="text" name="name" placeholder="Name" [(ngModel)]="newGame.name"><br>
+    <input type="text" name="developer" placeholder="Developer" [(ngModel)]="newGame.developer"><br>
+    <input type="text" name="platform" placeholder="Platform" [(ngModel)]="newGame.platform"><br>
+    <input type="text" name="description" placeholder="Description" [(ngModel)]="newGame.description" ><br>
+    <input type="date" name="releaseDate" value="Release Date" [(ngModel)]="newGame.releaseDate"><br>
+    <label for="completed">Completed: </label>
+    <input type="checkbox" name="completed" [(ngModel)]="newGame.completed"> <br>
+    <input type="text" name="hoursToComplete" placeholder="Hours To Complete" [(ngModel)]="newGame.hoursToComplete"><br>
+    <input type="text" name="genre" placeholder="Genre" [(ngModel)]="newGame.genre"><br>
+    <input type="text" name="imgUrl" placeholder="Image URL" [(ngModel)]="newGame.imgUrl"><br>
+    <button class="btn btn-primary" (click)="newGame = null; addingGame = false">Cancel</button>
+    <button class="btn btn-submit" (click)="addGame(newGame)">Sumbit</button>
+    <!-- <input type="submit" value="Add A Game"  (click)="addGame(newGame)"/> -->
+  </form>
+</div>
+</div>
+
+<div (click)="selected && !editGame" *ngIf="selected">
+  {{ selected.id }} <br>
+  {{ selected.name }} <br>
+  {{ selected.description }} <br>
+  {{ selected.developer }} <br>
+  {{ selected.platform }} <br>
+  {{ selected.releaseDate | date }} <br>
+  {{ selected.completed }} <br>
+  {{ selected.hoursToComplete }} <br>
+  {{ selected.genre }} <br>
+  <img [src]="selected.imgUrl" style="width:200px;height:300px;"/> <br>
+  <button class="btn btn-primary" (click)="disableTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditGame()">Edit</button>
+</div>
+<div *ngIf="editGame">
+  <h2>ID: {{editGame.id}}</h2>
+  <form>
+    <label for="name">Name: </label>
+    <input type="text" name="name" [(ngModel)]="editGame.name"><br>
+
+    <label for="developer">Developer: </label>
+    <input type="text" name="developer" [(ngModel)]="editGame.developer"><br>
+
+    <label for="platform">Platform: </label>
+    <input type="text" name="platform" [(ngModel)]="editGame.platform"><br>
+
+    <label for="description">Description: </label>
+    <input type="text" name="description" [(ngModel)]="editGame.description" style="width: 200px;"><br>
+
+    <label for="releaseDate">Release Date: </label>
+    <input type="date" name="releaseDate"  value="editGame.releaseDate" [(ngModel)]="editGame.releaseDate"><br>
+
+    <label for="completed">Completed: </label>
+    <input type="checkbox" name="completed" value="editGame.completed" [(ngModel)]="editGame.completed"> <br>
+
+    <label for="hoursToComplete">Hours To Complete: </label>
+    <input type="text" name="hoursToComplete" [(ngModel)]="editGame.hoursToComplete"><br>
+
+    <label for="genre">Genre: </label>
+    <input type="text" name="genre" [(ngModel)]="editGame.genre"><br>
+
+    <label for="imgUrl">Image URL: </label>
+    <input type="text" name="imgUrl" [(ngModel)]="editGame.imgUrl"><br>
+
+    <button (click)="editGame = null">Cancel</button>
+    <button (click)="updateGame(editGame)">Save</button>
+  </form>
+</div>
+
+
+<div>
+  <span>Average time spent on completed games: {{avgGameLength() | number:'1.1-2'}} hours </span>
+</div>
