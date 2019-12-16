@@ -208,7 +208,7 @@
         <span>Hours To Complete: {{ selected.hoursToComplete }}</span> <br />
         <span>Genre: {{ selected.genre }}</span> <br />
         <img [src]="selected.imgUrl" style="width:200px;height:300px;" /> <br />
-        <button class="btn btn-secondary" (click)="disableTable()">Back</button>
+        <button class="btn btn-secondary" (click)="disableTable(); editGame = null;">Back</button>
         <button class="btn btn-warning" (click)="setEditGame()">Edit</button>
       </div>
     </div>
