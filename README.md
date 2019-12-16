@@ -1,6 +1,6 @@
 ## Event Tracker Project
 
-### Week 12/13 Homework Project for Skill Distillery
+### Week 12/13/14 Homework Project for Skill Distillery
 
 ### Overview
 The assignment for week 12 was to create an event tracking application that was able to track some sort of event through time. I was tasked with creating a table, designing the associated POJO entity class, using Spring Data JPA repositories and services, and creating a controller that implemented REST. Users should be able to access full CRUD through Postman, using REST endpoints.
